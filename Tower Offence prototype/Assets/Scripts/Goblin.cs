@@ -30,17 +30,15 @@ public class Goblin : MonoBehaviour
         navAgent.speed = speed;
         /*float angle = Mathf.Atan2(waypoint.position.x - father.position.x, waypoint.position.z - father.position.z) * Mathf.Rad2Deg;
         father.rotation = Quaternion.Euler(0, angle, 0);
-        print(angle);
+        print(angle);*/
         if (!stop)
         {
-            rb.velocity = new Vector3(angle * 0.1f, 0, -angle * 0.1f);
             animator.SetBool("attack", false);
         }
         else
         {
-            rb.velocity = Vector3.zero;
             animator.SetBool("attack", true);
-        }*/
+        }
 
         if (hp <= 0)
         {
