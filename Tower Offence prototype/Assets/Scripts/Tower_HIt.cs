@@ -14,9 +14,14 @@ public class Tower_HIt : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        tower_script.Hit();
-        goblin = other.GetComponentInChildren<Goblin>();
-        goblin.Stop();
+        if (other.CompareTag("Player"))
+        {
+            tower_script.Hit();
+            print(other);
+            goblin = other.GetComponentInChildren<Goblin>();
+            goblin.Stop();
+        }
+        
     }
 
 }

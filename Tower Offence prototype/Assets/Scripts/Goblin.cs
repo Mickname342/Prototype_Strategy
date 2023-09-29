@@ -14,6 +14,7 @@ public class Goblin : MonoBehaviour
     public Rigidbody rb;
     public Transform father;
     Animator animator;
+    public Shoot shoot_script;
 
     public int hp = 5;
     // Start is called before the first frame update
@@ -33,15 +34,17 @@ public class Goblin : MonoBehaviour
         print(angle);*/
         if (!stop)
         {
-            animator.SetBool("attack", false);
+            //animator.SetBool("attack", false);
+
         }
         else
         {
-            animator.SetBool("attack", true);
+            //animator.SetBool("attack", true);
         }
 
         if (hp <= 0)
         {
+            shoot_script.j++;
             Destroy(gameObject);
         }
     }

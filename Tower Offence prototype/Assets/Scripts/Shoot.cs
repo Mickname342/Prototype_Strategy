@@ -5,15 +5,19 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     // Start is called before the first frame update
-    Transform goblin;
+    Transform[] goblin = new Transform[27];
     public GameObject bullet;
     bool shooting = false;
     float delayBetweenShots = 0;
     float timeLastShot;
+    int i = 0;
+    public int j = 0;
+    Goblin goblin_script;
+    Shoot shoot_script;
 
     void Start()
     {
-
+        shoot_script = GetComponent<Shoot>();
     }
 
     // Update is called once per frame
@@ -22,8 +26,8 @@ public class Shoot : MonoBehaviour
         if (shooting && Time.time > delayBetweenShots + timeLastShot)
         {
             timeLastShot = Time.time;
-            delayBetweenShots = 3;
-            float angle1 = Mathf.Atan2(goblin.position.x - transform.position.x, goblin.position.z - transform.position.z) * Mathf.Rad2Deg;
+            delayBetweenShots = 0.4f;
+            float angle1 = Mathf.Atan2(goblin[j].position.x - transform.position.x, goblin[j].position.z - transform.position.z) * Mathf.Rad2Deg;
             //float angle2 = Mathf.Atan2(goblin.position.x - transform.position.x, goblin.position.y - transform.position.y) * Mathf.Rad2Deg;
             GameObject bulletShot = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
             Rigidbody rb = bulletShot.GetComponent<Rigidbody>();
@@ -41,8 +45,11 @@ public class Shoot : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            goblin = collision.gameObject.GetComponent<Transform>();
+            goblin[i] = collision.gameObject.GetComponent<Transform>();
+            goblin_script = collision.gameObject.GetComponent<Goblin>();
+            goblin_script.shoot_script = shoot_script;
             shooting = true;
+            i++;
         }
     }
 }
