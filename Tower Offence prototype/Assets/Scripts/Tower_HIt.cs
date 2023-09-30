@@ -21,7 +21,15 @@ public class Tower_HIt : MonoBehaviour
             goblin = other.GetComponentInChildren<Goblin>();
             goblin.Stop();
         }
-        
+
+        if (other.CompareTag("GameController"))
+        {
+            tower_script.Hit2();
+            print(other);
+            goblin = other.GetComponentInChildren<Goblin>();
+            goblin.Stop();
+        }
+
     }
 
 }

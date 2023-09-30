@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     Goblin goblin;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("GameController"))
         {
             goblin = other.GetComponent<Goblin>();
             goblin.HPDown();

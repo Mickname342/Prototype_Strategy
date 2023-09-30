@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     Transform[] goblin = new Transform[27];
     public GameObject bullet;
+    public GameObject tower;
     bool shooting = false;
     float delayBetweenShots = 0;
     float timeLastShot;
@@ -14,10 +15,12 @@ public class Shoot : MonoBehaviour
     public int j = 0;
     Goblin goblin_script;
     Shoot shoot_script;
+    Tower tower_script;
 
     void Start()
     {
         shoot_script = GetComponent<Shoot>();
+        tower_script = tower.GetComponent<Tower>();
     }
 
     // Update is called once per frame
@@ -43,11 +46,12 @@ public class Shoot : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("GameController"))
         {
             goblin[i] = collision.gameObject.GetComponent<Transform>();
             goblin_script = collision.gameObject.GetComponent<Goblin>();
             goblin_script.shoot_script = shoot_script;
+            tower_script.goblin[i] = goblin_script;
             shooting = true;
             i++;
         }

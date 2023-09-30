@@ -15,6 +15,7 @@ public class Goblin : MonoBehaviour
     public Transform father;
     Animator animator;
     public Shoot shoot_script;
+    int i = 0;
 
     public int hp = 5;
     // Start is called before the first frame update
@@ -27,8 +28,8 @@ public class Goblin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navAgent.SetDestination(waypoint.position);
-        navAgent.speed = speed;
+        navAgent.SetDestination(ends[i].position);
+        //navAgent.speed = speed;
         /*float angle = Mathf.Atan2(waypoint.position.x - father.position.x, waypoint.position.z - father.position.z) * Mathf.Rad2Deg;
         father.rotation = Quaternion.Euler(0, angle, 0);
         print(angle);*/
@@ -57,5 +58,10 @@ public class Goblin : MonoBehaviour
     public void HPDown()
     {
         hp--;
+    }
+
+    public void ChangeWaypoint()
+    {
+        i++;
     }
 }
