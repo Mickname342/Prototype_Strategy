@@ -9,6 +9,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private GoblinDatabase database;
     [SerializeField] private int SelectedObjectIndex = -1;
+    [SerializeField] private int Gold  = 900;
 
     private void Start()
     {
@@ -18,7 +19,11 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
+        
+        
         StopPlacement();
+        
+        
         //SelectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
         SelectedObjectIndex = Random.Range(1,3);
         if(SelectedObjectIndex < 0)
@@ -28,8 +33,9 @@ public class PlacementSystem : MonoBehaviour
         }
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
-    }
 
+        
+    }
     private void PlaceStructure()
     {
         if(inputManager.IsPointerOverUI()) 
@@ -58,5 +64,18 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int GridPos = grid.WorldToCell(MousePos);
         MouseIndicator.transform.position = MousePos;
         CellIndicator.transform.position = grid.CellToWorld(GridPos);
+    Checker();
+    }
+
+    public void Checker()
+    {
+        if(Input.GetMouseButtonDown(0) && Gold >=100)
+        {
+            Debug.Log("you recruited a goblin");
+            Gold -=100;
+            StopPlacement();
+        }
+
+
     }
 }
