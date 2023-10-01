@@ -9,7 +9,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private GoblinDatabase database;
     [SerializeField] private int SelectedObjectIndex = -1;
-    [SerializeField] private int Gold  = 900;
+    public int Gold  = 900;
 
     private void Start()
     {
@@ -19,10 +19,8 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
-        
-        
         StopPlacement();
-        
+         CellIndicator.SetActive(true);
         
         //SelectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
         SelectedObjectIndex = Random.Range(1,3);
@@ -31,9 +29,16 @@ public class PlacementSystem : MonoBehaviour
             Debug.LogError($"No ID found {ID}");
             return;
         }
+        if(Gold>=100)
+        {
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
-
+        }
+        else if(Gold<100)
+        {
+            Debug.Log("You can't afford any more goblins");
+            return;
+        }
         
     }
     private void PlaceStructure()
@@ -49,9 +54,10 @@ public class PlacementSystem : MonoBehaviour
     }
         private void StopPlacement()
     {
-        SelectedObjectIndex += -1;
+        SelectedObjectIndex = -1;
         inputManager.OnClicked -= PlaceStructure;
-        inputManager.OnExit -= StopPlacement;        
+        inputManager.OnExit -= StopPlacement; 
+        CellIndicator.SetActive(false);       
     }
 
     private void Update()
