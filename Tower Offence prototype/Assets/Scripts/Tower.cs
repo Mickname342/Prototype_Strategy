@@ -23,7 +23,7 @@ public class Tower : MonoBehaviour
         if (HP <= 0)
         {
             
-            for(int j = 0; j < goblin.Length; j++)
+            /*for(int j = 0; j < goblin.Length; j++)
             {
                 if (goblin[j] == null)
                 {
@@ -37,9 +37,9 @@ public class Tower : MonoBehaviour
                     goblin[j].ChangeWaypoint();
                 }
                 
-            }
+            }*/
             GameObject.Destroy(gameObject);
-            Income.Gold+=300; // Line added by Rhys
+            Income.Gold+=150; // Line added by Rhys
         }
     }
 

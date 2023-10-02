@@ -10,7 +10,7 @@ public class Goblin : MonoBehaviour
     public Transform visuals;
     public GameObject collector;
     Waypoints waypoints;
-    public Transform[] ends = new Transform[3];
+    public Transform[] ends = new Transform[4];
     int speed = 20;
     bool stop = false;
     public Rigidbody rb;
@@ -25,7 +25,7 @@ public class Goblin : MonoBehaviour
     {
         collector = GameObject.Find("WaypontCollector");
         waypoints = collector.GetComponent<Waypoints>();
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 4; i++)
         {
             ends[i] = waypoints.waypoint[i];
         }
@@ -36,6 +36,11 @@ public class Goblin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ends[i] == null)
+        {
+            i++;
+            print("I'm going to waypoint " + i);
+        }
         navAgent.SetDestination(ends[i].position);
         //navAgent.speed = speed;
         /*float angle = Mathf.Atan2(waypoint.position.x - father.position.x, waypoint.position.z - father.position.z) * Mathf.Rad2Deg;

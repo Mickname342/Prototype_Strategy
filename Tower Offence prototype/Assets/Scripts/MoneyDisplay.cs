@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro;
 
-public class Waypoints : MonoBehaviour
+public class MoneyDisplay : MonoBehaviour
 {
+
+    public TextMeshProUGUI gold;
+    public PlacementSystem money;
     // Start is called before the first frame update
-    public Transform[] waypoint = new Transform[4];
     void Start()
     {
         
@@ -15,6 +18,6 @@ public class Waypoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gold.text = "Gold:" + (money.Gold);
     }
 }

@@ -166,7 +166,9 @@ MonoBehaviour:
   navAgent: {fileID: 6018272195302850234}
   waypoint: {fileID: 0}
   visuals: {fileID: 6018272194025519701}
+  collector: {fileID: 0}
   ends:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -324,7 +326,7 @@ Transform:
   m_Children:
   - {fileID: 6018272194241183626}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6018272195302850236
 Rigidbody:
