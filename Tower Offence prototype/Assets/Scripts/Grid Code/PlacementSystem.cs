@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -9,11 +10,15 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private GoblinDatabase database;
     [SerializeField] private int SelectedObjectIndex = -1;
+    public GameObject[] goblins = new GameObject[8];
+    public NavMeshAgent[] navMesh = new NavMeshAgent[8];
     public int Gold  = 900;
+    int j = 0;
 
     private void Start()
     {
         StopPlacement();
+        Iniciate();
     }
 
 
@@ -50,7 +55,9 @@ public class PlacementSystem : MonoBehaviour
         Vector3 MousePos = inputManager.GetMapPos();
         Vector3Int GridPos = grid.WorldToCell(MousePos);
         GameObject newObject = Instantiate(database.objectsData[SelectedObjectIndex].Prefab);
+        goblins[j] = newObject;
         newObject.transform.position = grid.CellToWorld(GridPos);
+        j++;
     }
         private void StopPlacement()
     {
@@ -73,6 +80,16 @@ public class PlacementSystem : MonoBehaviour
     Checker();
     }
 
+    public void Iniciate()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            navMesh[i] = goblins[i].GetComponent<NavMeshAgent>();
+            navMesh[i].enabled = true;
+        }
+        
+    }
+
     public void Checker()
     {
         if(Input.GetMouseButtonDown(0) && Gold >=100)
@@ -84,4 +101,5 @@ public class PlacementSystem : MonoBehaviour
 
 
     }
+    
 }
