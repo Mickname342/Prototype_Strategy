@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     Shoot shoot;
     int i = 1;
     public Goblin[] goblin = new Goblin[27];
+    [SerializeField] private PlacementSystem Income; // Line added by Rhys
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class Tower : MonoBehaviour
     {
         if (HP <= 0)
         {
+            
             for(int j = 0; j < goblin.Length; j++)
             {
                 if (goblin[j] == null)
@@ -37,6 +39,7 @@ public class Tower : MonoBehaviour
                 
             }
             GameObject.Destroy(gameObject);
+            Income.Gold+=300; // Line added by Rhys
         }
     }
 

@@ -8,6 +8,8 @@ public class Goblin : MonoBehaviour
     public NavMeshAgent navAgent;
     public Transform waypoint;
     public Transform visuals;
+    public GameObject collector;
+    Waypoints waypoints;
     public Transform[] ends = new Transform[3];
     int speed = 20;
     bool stop = false;
@@ -21,7 +23,13 @@ public class Goblin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waypoint = ends[0];
+        collector = GameObject.Find("WaypontCollector");
+        waypoints = collector.GetComponent<Waypoints>();
+        for(int i = 0; i < 3; i++)
+        {
+            ends[i] = waypoints.waypoint[i];
+        }
+        //waypoint = ends[0];
         animator = GetComponent<Animator>();
     }
 

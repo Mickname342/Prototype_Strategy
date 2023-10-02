@@ -23,7 +23,7 @@ public class PlacementSystem : MonoBehaviour
          CellIndicator.SetActive(true);
         
         //SelectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
-        SelectedObjectIndex = Random.Range(1,3);
+        SelectedObjectIndex = Random.Range(0,3);
         if(SelectedObjectIndex < 0)
         {
             Debug.LogError($"No ID found {ID}");
